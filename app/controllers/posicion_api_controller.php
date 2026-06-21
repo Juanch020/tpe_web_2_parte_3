@@ -8,18 +8,19 @@ class PosicionApiController{
         $this->model = new PosicionModel();
     }
 
-    public function getPosiciones($response){
+    public function getAll($request, $response){
         $posiciones = $this->model->getAll();
-        $response->json($posiciones);
+        $response->json($posiciones, 200);
     }
 
     public function getPosicion($request, $response){
         $id = $request->params->id;
-        $posicion = $this->model->getById($id);
 
         if (!is_numeric($id)) {
             return $response->json(['error' => 'ID inválido'], 400);
         }
+
+        $posicion = $this->model->getById($id);
 
         if($posicion){
             return $response->json($posicion, 200);

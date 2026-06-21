@@ -152,7 +152,7 @@ class JugadorApiController
 
         $this->model->delete($id_jugador);
 
-        return $res->json(null, 204);
+        return $res->json(['message' => 'Jugador eliminado correctamente'], 200);
     }
 
     public function addJugador($req, $res){

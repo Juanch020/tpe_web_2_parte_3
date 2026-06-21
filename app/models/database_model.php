@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__ . '/../../config.php';
-
 class DatabaseModel {
 
     protected $db;
@@ -37,8 +36,7 @@ class DatabaseModel {
             );
 
         } catch (PDOException $e) {
-
-            die('Error de conexión: ' . $e->getMessage());
+            throw $e;
         }
     }
 
@@ -61,9 +59,7 @@ class DatabaseModel {
         // Si no existe, importa el SQL
         if (!$tableExists) {
 
-            $sql = file_get_contents(
-                __DIR__ . '/../../equipo_de_futbol.sql'
-            );
+            $sql = file_get_contents(__DIR__ . '/../../database/equipo_de_futbol.sql');
 
             if ($sql === false) {
                 throw new Exception(

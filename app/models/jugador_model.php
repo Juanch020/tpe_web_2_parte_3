@@ -26,7 +26,7 @@ class JugadorModel extends DatabaseModel{
         if ($sort) {
             $allowedSorts = ['id', 'nombre', 'precio', 'id_equipo', 'id_posicion'];
             if (in_array($sort, $allowedSorts)) {
-                $sql .= " ORDER BY $sort " . ($order === 'desc' ? 'DESC' : 'ASC'); 
+                $sql .= " ORDER BY $sort " . ($order === 'DESC' ? 'DESC' : 'ASC'); 
             }
         }
 

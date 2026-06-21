@@ -8,18 +8,19 @@ class EquipoApiController{
         $this->model = new EquipoModel();
     }
 
-    public function getAll($response){
+    public function getAll($request, $response){
         $equipos = $this->model->getAll();
-        $response->json($equipos);
+        $response->json($equipos, 200);
     }
 
-    public function getEquipos($request, $response){
+    public function getEquipo($request, $response){
         $id = $request->params->id;
-        $equipo = $this->model->getById($id);
 
         if (!is_numeric($id)) {
             return $response->json(['error' => 'ID inválido'], 400);
         }
+
+        $equipo = $this->model->getById($id);
 
         if($equipo){
             return $response->json($equipo, 200);

@@ -15,16 +15,18 @@ class PosicionModel extends DatabaseModel{
         return $query->fetchAll();
     }
     
-    public function create($nombre) {
+    public function create($data) {
         $query = $this->db->prepare("INSERT INTO posicion(nombre) VALUES (?)");
 
-        $query->execute([$nombre]);
+        $query->execute([$data]);
+
+        return $this->db->lastInsertId();
     }
 
-    public function update($id, $nombre) {
+    public function update($id, $data) {
         $query = $this->db->prepare("UPDATE posicion SET nombre = ? WHERE id = ?");
 
-        $query->execute([$nombre, $id]);
+        $query->execute([$data, $id]);
     }
 
     public function delete($id) {
