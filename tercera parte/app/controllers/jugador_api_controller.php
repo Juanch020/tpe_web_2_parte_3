@@ -109,9 +109,7 @@ class JugadorApiController
         $jugador = $this->model->getById($id_jugador);
 
         if (!$jugador) {
-            return $res->json([
-                'error' => 'El jugador no existe'
-            ], 404);
+            return $res->json(['error' => 'El jugador no existe'], 404);
         }
 
         if (!isset($req->body->nombre) || !isset($req->body->precio) || !isset($req->body->id_equipo) || !isset($req->body->id_posicion)) {
@@ -174,16 +172,14 @@ class JugadorApiController
             return $res->json(['error' => 'Equipo y posición deben ser numéricos'], 400);
         }
 
-        // 🚨 NUEVA VALIDACIÓN DE EXISTENCIA:
-        // Asumiendo que tus otros modelos tienen un método parecido a getById() o get()
-        $equipoExiste = $this->equipoModel->getById($req->body->id_equipo);
-        $posicionExiste = $this->posicionModel->getById($req->body->id_posicion);
+        $equipo = $this->equipoModel->getById($req->body->id_equipo);
+        $posicion = $this->posicionModel->getById($req->body->id_posicion);
 
-        if (!$equipoExiste) {
+        if (!$equipo) {
             return $res->json(['error' => 'El id_equipo especificado no existe.'], 400);
         }
 
-        if (!$posicionExiste) {
+        if (!$posicion) {
             return $res->json(['error' => 'El id_posicion especificado no existe.'], 400);
         }
 

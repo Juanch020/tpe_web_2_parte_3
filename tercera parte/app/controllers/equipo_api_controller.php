@@ -106,7 +106,7 @@ class EquipoApiController{
 
         $this->model->delete($id);
 
-        return $res->json(null, 204);
+        return $res->json(['message' => 'equipo eliminado'], 204);
     }
 }
 ?>
