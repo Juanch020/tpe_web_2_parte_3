@@ -5,12 +5,14 @@ class EquipoModel extends DatabaseModel{
     public function getById($id){
         $query = $this->db->prepare("SELECT * FROM equipo WHERE id = ?");
         $query->execute([$id]);
+
         return $query->fetch();
     }
 
     public function getAll(){
         $query = $this->db->prepare("SELECT * FROM equipo ORDER BY id DESC");
         $query->execute();
+        
         return $query->fetchAll();
     }
 

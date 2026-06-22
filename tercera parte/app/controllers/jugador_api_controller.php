@@ -7,13 +7,13 @@ require_once __DIR__ . '/../models/posicion_model.php';
 class JugadorApiController
 {
     private $model;
-    private $equipoModel;   // <-- NUEVO
-    private $posicionModel; // <-- NUEVO
+    private $equipoModel;   
+    private $posicionModel; 
 
     public function __construct(){
         $this->model = new JugadorModel();
-        $this->equipoModel = new EquipoModel();     // <-- NUEVO
-        $this->posicionModel = new PosicionModel(); // <-- NUEVO
+        $this->equipoModel = new EquipoModel();    
+        $this->posicionModel = new PosicionModel();
     }
 
     public function getJugadores($req, $res){
@@ -183,7 +183,6 @@ class JugadorApiController
             return $res->json(['error' => 'El id_posicion especificado no existe.'], 400);
         }
 
-        // Si pasó todo, insertamos de forma segura
         $data = [
             'nombre' => $req->body->nombre,
             'precio' => $req->body->precio,

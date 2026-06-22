@@ -28,7 +28,7 @@ class PosicionApiController {
         if($posicion){
             return $response->json($posicion, 200);
         }else{
-            $response->json(['error' =>'posicion no encontrada'], 404);
+            return $response->json(['error' =>'posicion no encontrada'], 404);
         }
     }
 
@@ -38,9 +38,9 @@ class PosicionApiController {
             return $res->json(['error' => 'Faltan datos'], 400);
         }
 
-        $this->model->create($req->body->nombre);
+        $id = $this->model->create($req->body->nombre);
 
-        return $res->json(['message' => 'Posición creada'], 201);
+        return $res->json($this->model->getById($id), 201);
     }
 
     public function updatePosicion($req, $res){
@@ -88,7 +88,7 @@ class PosicionApiController {
 
         $this->model->delete($id);
 
-        return $res->json(null, 204);
+        return $res->json(['message' => 'posicion eliminada'], 200);
     }
 }
 ?>

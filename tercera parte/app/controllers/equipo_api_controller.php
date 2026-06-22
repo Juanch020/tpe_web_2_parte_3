@@ -28,7 +28,7 @@ class EquipoApiController{
         if($equipo){
             return $response->json($equipo, 200);
         }else{
-            $response->json(['error' =>'equipo no encontrado'], 404);
+            return $response->json(['error' =>'equipo no encontrado'], 404);
         }
     }
 
@@ -106,7 +106,7 @@ class EquipoApiController{
 
         $this->model->delete($id);
 
-        return $res->json(['message' => 'equipo eliminado'], 204);
+        return $res->json(['message' => 'equipo eliminado'], 200);
     }
 }
 ?>
